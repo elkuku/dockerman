@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Containers{% endblock %}
+
+{% block body %}
+    <h1>Containers</h1>
+    {{ component('Docker:Containers') }}
+{% endblock %}
+
+

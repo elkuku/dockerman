@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Images{% endblock %}
+
+{% block body %}
+    <h1>Images</h1>
+    {{ component('Docker:Images') }}
+{% endblock %}
+
+

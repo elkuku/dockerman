@@ -1,0 +1,32 @@
+{
+  "Command": "\"docker-entrypoint.s…\"",
+  "CreatedAt": "2023-11-20 13:01:26 +0100 CET",
+  "ID": "4f50b8171323",
+  "Image": "postgres:15-alpine",
+  "Labels": "com.docker.compose.service=database,com.docker.compose.version=2.23.0,com.docker.compose.depends_on=,com.docker.compose.image=sha256:d43df62c9cb97b57fd18cdd1714c73bfb6ce043e7147bc1a89df4bf6f6fac694,com.docker.compose.oneoff=False,com.docker.compose.project.config_files=/home/elkuku/repos/dockerman/compose.yaml,/home/elkuku/repos/dockerman/compose.override.yaml,com.docker.compose.config-hash=6c221ecbdac35913024d7810dd21e94b38c91f11e9c30ec391e6d46c8a92e709,com.docker.compose.container-number=1,com.docker.compose.project=dockerman,com.docker.compose.project.working_dir=/home/elkuku/repos/dockerman",
+  "LocalVolumes": "1",
+  "Mounts": "dockerman_data…",
+  "Names": "dockerman-database-1",
+  "Networks": "dockerman_default",
+  "Ports": "0.0.0.0:32777-\u003e5432/tcp, :::32777-\u003e5432/tcp",
+  "RunningFor": "2 days ago",
+  "Size": "0B",
+  "State": "running",
+  "Status": "Up 9 minutes"
+}
+{
+  "Command": "\"sh -c 'mailcatcher …\"",
+  "CreatedAt": "2023-11-20 13:01:26 +0100 CET",
+  "ID": "9ac3b6713129",
+  "Image": "schickling/mailcatcher",
+  "Labels": "com.docker.compose.image=sha256:9156fb5a15fb9c354a16550b8583a40b718b96e5fc39647dcd4765532359477d,com.docker.compose.project=dockerman,com.docker.compose.project.config_files=/home/elkuku/repos/dockerman/compose.yaml,/home/elkuku/repos/dockerman/compose.override.yaml,com.docker.compose.project.working_dir=/home/elkuku/repos/dockerman,com.docker.compose.version=2.23.0,com.docker.compose.config-hash=29389f9b5bf08d219d87d7032255b917d410f8550dd50f875ea0e80256777a64,com.docker.compose.container-number=1,com.docker.compose.depends_on=,maintainer=Johannes Schickling \u003cschickling.j@gmail.com\u003e,com.docker.compose.oneoff=False,com.docker.compose.service=mailer",
+  "LocalVolumes": "0",
+  "Mounts": "",
+  "Names": "dockerman-mailer-1",
+  "Networks": "dockerman_default",
+  "Ports": "0.0.0.0:32779-\u003e1025/tcp, :::32779-\u003e1025/tcp, 0.0.0.0:32778-\u003e1080/tcp, :::32778-\u003e1080/tcp",
+  "RunningFor": "2 days ago",
+  "Size": "0B",
+  "State": "running",
+  "Status": "Up 9 minutes"
+}
