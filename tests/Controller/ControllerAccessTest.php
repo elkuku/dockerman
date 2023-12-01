@@ -2,7 +2,6 @@
 
 namespace App\Tests\Controller;
 
-use Elkuku\SymfonyUtils\Test\ControllerBaseTest;
 
 class ControllerAccessTest extends ControllerBaseTest
 {
@@ -28,9 +27,17 @@ class ControllerAccessTest extends ControllerBaseTest
             'app_default' => [
                 'statusCodes' => ['GET' => 200],
             ],
-            'login' => [
-                'statusCodes' => ['GET' => 200],
+            'app_docker_containers' => [
+                'statusCodes' => ['GET' => 200, 'POST' => 200],
             ],
+            'app_docker_images' => [
+                'statusCodes' => ['GET' => 200, 'POST' => 200],
+            ],
+
+            'app_docker_volumes' => [
+                'statusCodes' => ['GET' => 200, 'POST' => 200],
+            ],
+
         ];
 
     public function testAllRoutesAreProtected(): void

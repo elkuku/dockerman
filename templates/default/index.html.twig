@@ -2,14 +2,7 @@
 
 {% block title %}Hello DefaultController!{% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-    <script type="module">
-        import '{{ asset('lib/bootstrap_test.js') }}';
-    </script>
-{% endblock %}
-
 {% block body %}
-<h1>DockerMan!</h1>
+    <h1>DockerMan!</h1>
     <pre class="console">{{ consoleOutput }}</pre>
 {% endblock %}

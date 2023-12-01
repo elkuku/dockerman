@@ -4,7 +4,27 @@
 
 {% block body %}
     <h1>Images</h1>
-    {{ component('Docker:Images') }}
+    <table class="table">
+        <tr>
+            <th>Repository</th>
+            <th>Tag</th>
+            <th>ImageId</th>
+            <th>Created</th>
+            <th>Size</th>
+        </tr>
+    {% for image in images %}
+    <tr>
+        <td>{{ image.Repository }}</td>
+        <td>{{ image.Tag }}</td>
+        <td>{{ image.ID }}</td>
+        <td>{{ image.CreatedSince }}</td>
+        <td>{{ image.Size }}</td>
+    </tr>
+
+    {% endfor %}
+    </table>
+    <pre class="console">{{ output2 }}</pre>
+    <pre class="console">{{ output }}</pre>
 {% endblock %}
 
 

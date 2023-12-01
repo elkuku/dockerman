@@ -4,7 +4,39 @@
 
 {% block body %}
     <h1>Containers</h1>
-    {{ component('Docker:Containers') }}
+
+    {{ form(form) }}
+    <div class="row">
+        {% for container in containers %}
+            <div class="col-auto mb-3">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        {{ container.Names }}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {% if 'running' == container.State %}
+                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle"></span>
+                            {% else %}
+                                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle"></span>
+                            {% endif %}
+                            {{ container.Image }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Created: {{ container.RunningFor }}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Status: {{ container.Status }}</h6>
+                        <p class="card-text">{{ container.Ports }}</p>
+                    </div>
+
+                    <div class="card-footer">
+                        <pre class="console">{{ container.ID }}</pre>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <h3 class="alert alert-warning">No containers found :(</h3>
+        {% endfor %}
+    </div>
+    <pre class="console">{{ output }}</pre>
+
 {% endblock %}
 
 
