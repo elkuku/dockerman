@@ -8,7 +8,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/deprecations" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/inflector" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/masterminds/html5" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/monolog/monolog" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/myclabs/deep-copy" />
@@ -44,7 +43,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/object-enumerator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/object-reflector" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/recursion-context" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/resource-operations" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/type" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/version" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/asset" />
