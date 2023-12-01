@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Controller;
+namespace App\Tests;
 
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -13,7 +13,7 @@ use UnexpectedValueException;
 /**
  * Controller "smoke" test
  */
-abstract class ControllerBaseTest extends WebTestCase
+abstract class ControllerBase extends WebTestCase
 {
     /**
      * Must be set in extending class.

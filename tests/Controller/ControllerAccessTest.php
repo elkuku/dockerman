@@ -2,8 +2,9 @@
 
 namespace App\Tests\Controller;
 
+use App\Tests\ControllerBase;
 
-class ControllerAccessTest extends ControllerBaseTest
+class ControllerAccessTest extends ControllerBase
 {
     protected string $controllerRoot = __DIR__ . '/../../src/Controller';
 
