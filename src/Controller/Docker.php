@@ -6,7 +6,6 @@ use App\Dto\ContainerOptions;
 use App\Service\DockerService;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Process\Exception\ProcessFailedException;
@@ -17,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class Docker extends BaseController
 {
     #[Route('/containers', name: 'app_docker_containers', methods: ['GET', 'POST'])]
-    public function containers(Request $request): Response
+    public function containers(Request $request, DockerService $dockerService): Response
     {
         $options = new ContainerOptions();
         $form = $this->createFormBuilder($options)
@@ -40,26 +39,20 @@ class Docker extends BaseController
             'docker',
             'container',
             'ls',
-            //'-a',
             '--format=json'
         ];
 
         if ($options->all) {
             $command[] = '-a';
         }
+
         $process = new Process($command);
         $process->run();
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
-        $output = $process->getOutput();
-        $arr = explode("\n", trim($output));
-        $jsonString = '[' . implode(',', $arr) . ']';
-        $json = json_validate($jsonString);
-        $dd = json_decode($jsonString);
         return $this->render('docker/containers.html.twig', [
-            'containers' => $dd,
-            'output' => $output,
+            'containers' => $dockerService->decodeGoJson($process->getOutput()),
             'form' => $form,
         ]);
     }
@@ -71,10 +64,6 @@ class Docker extends BaseController
         $process2 = new Process(['docker', 'image', 'ls', '--format=json']);
         $process->run();
         $process2->run();
-
-        $output = $process2->getOutput();
-
-        $gg = $docker->decodeGoJson($output);
 
         return $this->render('docker/images.html.twig', [
             'output' => $process->getOutput(),

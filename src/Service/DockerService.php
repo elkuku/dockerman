@@ -11,14 +11,15 @@ class DockerService
     {
         $arr = explode("\n", trim($string));
         $jsonString = '[' . implode(',', $arr) . ']';
-        $json = json_validate($jsonString);
-        $dd = json_decode($jsonString);
+        if (!json_validate($jsonString)) {
+            throw new \InvalidArgumentException('Invalid JSON string');
+        }
 
-        return $dd;
+        return json_decode($jsonString, null, 512, JSON_THROW_ON_ERROR);
     }
 
-    public function getContainerforImages():void
+    public function getContainerForImages(): void
     {
-        
+
     }
 }

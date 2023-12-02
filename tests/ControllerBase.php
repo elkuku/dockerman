@@ -63,7 +63,7 @@ abstract class ControllerBase extends WebTestCase
                 $sub = $it->getSubPath() ? $it->getSubPath() . '\\' : '';
 
                 $routerClass = 'App\Controller\\' . $sub . basename(
-                        $it->key(),
+                        (string) $it->key(),
                         '.php'
                     );
                 $routes = $routeLoader->load($routerClass)->all();
