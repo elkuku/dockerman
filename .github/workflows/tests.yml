@@ -76,3 +76,12 @@ jobs:
 #                  cp .env.ci .env
 #                  cp phpunit.ci.xml phpunit.xml
 #                  php bin/phpunit
+
+
+
+            - name: Output log files
+              run: ls /var/log/apache2/
+            - name: error log
+              run: cat /var/log/apache2/error.log
+            - name: access log
+              run: cat /var/log/apache2/access.log
