@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ parent() }} - Networks{% endblock %}
+
+{% block body %}
+    <h1>Networks</h1>
+    {{ items|length }}
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Driver</th>
+            <th>Scope</th>
+        </tr>
+        {% for item in items %}
+            <tr>
+                <td>{{ item.ID }}</td>
+                <td>{{ item.Name }}</td>
+                <td>{{ item.Driver }}</td>
+                <td>{{ item.Scope }}</td>
+            </tr>
+
+        {% endfor %}
+    </table>
+    <pre class="console">{{ output2 }}</pre>
+    <pre class="console">{{ output }}</pre>
+{% endblock %}
+
+
+
+
+

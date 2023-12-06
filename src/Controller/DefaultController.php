@@ -2,34 +2,29 @@
 
 namespace App\Controller;
 
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/', name: 'app_default', methods: ['GET'])]
-class DefaultController extends BaseController
+class DefaultController extends AbstractController
 {
-    public function __invoke(
-        #[Autowire('%kernel.project_dir%')] string $projectDir,
-    ): Response
+    public function __invoke(): Response
     {
-      //  $process = new Process(['docker', 'info', '--format=json']);
-       $process = new Process(['docker', 'info']);
-        $process->run();
+        $process = new Process(['docker', 'info']);
+        $error = '';
 
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
+        try {
+            $process->mustRun();
+        } catch (ProcessFailedException $exception) {
+            $error = $exception->getMessage();
         }
 
         return $this->render('default/index.html.twig', [
-            'controller_name' => 'DefaultController',
-            'php_version' => PHP_VERSION,
-            'symfony_version' => Kernel::VERSION,
-            'project_dir' => $projectDir,
-            'consoleOutput'=> $process->getOutput(),
+            'error' => $error,
+            'consoleOutput' => $process->getOutput(),
         ]);
     }
 }

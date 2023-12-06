@@ -4,5 +4,7 @@ namespace App\Dto;
 
 class ContainerOptions
 {
-    public bool $all = false;
+    public bool $onlyRunning = false;
+    public ?string $filterName = '';
+    public ?string $filterAncestor = '';
 }

@@ -4,5 +4,9 @@
 
 {% block body %}
     <h1>DockerMan!</h1>
+    {% if error %}
+        <pre class="alert alert-danger">{{ error }}</pre>
+    {% else %}
     <pre class="console">{{ consoleOutput }}</pre>
+{% endif %}
 {% endblock %}

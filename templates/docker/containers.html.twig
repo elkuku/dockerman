@@ -4,9 +4,22 @@
 
 {% block body %}
     <h1>Containers</h1>
+    <p>
+        Found: {{ containers|length }}
+    </p>
+    <p>
+        <button class="btn btn-{{ hasFilters ? 'warning':'primary' }}" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Filters
+        </button>
+    </p>
+    <div class="collapse {{ hasFilters ? 'show':'' }}" id="collapseExample">
+        <div class="card card-body">
+            {{ form(form) }}
+        </div>
+    </div>
 
-    {{ form(form) }}
-    <div class="row">
+    <div class="row" {{ stimulus_controller('containers') }}>
         {% for container in containers %}
             <div class="col-auto mb-3">
                 <div class="card" style="width: 18rem;">
@@ -24,6 +37,44 @@
                         <h6 class="card-subtitle mb-2 text-muted">Created: {{ container.RunningFor }}</h6>
                         <h6 class="card-subtitle mb-2 text-muted">Status: {{ container.Status }}</h6>
                         <p class="card-text">{{ container.Ports }}</p>
+                        <div class="btn-group">
+                            <button type="button"
+                                    class="btn btn-{{ 'running' == container.State ? 'danger':'success' }}"
+                                    title="{{ 'running' == container.State ? 'Stop':'Start' }}"
+                                    data-action="containers#startStop"
+                                    data-containers-id-param="{{ container.ID }}"
+                            >
+                                <i class="bi bi-{{ 'running' == container.State ? 'square-fill':'caret-right-fill' }}"></i>
+                            </button>
+                            <button type="button" class="btn btn-warning"
+                                    title="Pause"
+                            >
+                                <i class="bi bi-pause"></i>
+                            </button>
+                            <button type="button" class="btn btn-primary"
+                                    title="Show Logs"
+                                    data-containers-action-param="logs"
+                                    data-containers-id-param="{{ container.ID }}"
+                                    data-action="containers#showModal"
+                            >
+                                <i class="bi bi-body-text"></i>
+                            </button>
+                            <button type="button" class="btn btn-primary"
+                                    title="Inspect"
+                                    data-containers-action-param="inspect"
+                                    data-containers-id-param="{{ container.ID }}"
+                                    data-action="containers#showModal"
+                            >
+                                <i class="bi bi-eye"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger"
+                                    title="Remove"
+                                    data-action="containers#remove"
+                                    data-containers-id-param="{{ container.ID }}"
+                            >
+                                <i class="bi bi-trash3"></i>
+                            </button>
+                        </div>
                     </div>
 
                     <div class="card-footer">
@@ -31,9 +82,28 @@
                     </div>
                 </div>
             </div>
-            {% else %}
+        {% else %}
             <h3 class="alert alert-warning">No containers found :(</h3>
         {% endfor %}
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="containersModal" tabindex="-1" aria-labelledby="containersModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="containersModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <pre class="modal-body" id="containersModalContent">
+                    ...
+                </pre>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
 
 {% endblock %}
