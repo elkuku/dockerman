@@ -34,6 +34,8 @@ jobs:
             - name: Run functional and unit tests
               run: |
                 make citests || cat /var/log/apache2/error.log
-                ls  /var/log/apache2/
+                pwd
+                ls  -la /var/log/apache2/
                 cat /var/log/apache2/error.log
                 cat /var/log/apache2/access.log
+                ls -la ../var
