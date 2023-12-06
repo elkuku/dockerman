@@ -40,6 +40,9 @@ class Networks extends AbstractController
         ]);
     }
 
+    /**
+     * @return array<string>
+     */
     private function getData(DockerService $dockerService):array
     {
         $process = new Process(['docker', 'network', 'ls', '--format=json']);

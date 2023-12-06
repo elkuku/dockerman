@@ -34,34 +34,33 @@ class ControllerAccessTest extends ControllerBase
             'app_docker_images' => [
                 'statusCodes' => ['GET' => 200, 'POST' => 200],
             ],
-
-            'app_docker_volumes' => [
+            'app_docker_volumes_index' => [
                 'statusCodes' => ['GET' => 200, 'POST' => 200],
             ],
-            'app_docker_networks' => [
+            'app_docker_volumes_remove' => [
                 'statusCodes' => ['GET' => 200, 'POST' => 200],
             ],
-
+            'app_docker_networks_index' => [
+                'statusCodes' => ['GET' => 200, 'POST' => 200],
+            ],
+            'app_docker_networks_remove' => [
+                'statusCodes' => ['GET' => 200, 'POST' => 200],
+            ],
             'app_docker_containers_logs' => [
                 'statusCodes' => ['GET' => 200, 'POST' => 200],
             ],
-
             'app_docker_containers_inspect' => [
                 'statusCodes' => ['GET' => 200, 'POST' => 200],
             ],
             'app_docker_containers_start' => [
                 'statusCodes' => ['GET' => 200, 'POST' => 200],
             ],
-
             'app_docker_containers_stop' => [
                 'statusCodes' => ['GET' => 200, 'POST' => 200],
             ],
-
             'app_docker_containers_remove' => [
                 'statusCodes' => ['GET' => 200, 'POST' => 200],
             ],
-
-
         ];
 
     public function testAllRoutesAreProtected(): void

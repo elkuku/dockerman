@@ -40,6 +40,9 @@ class Volumes extends AbstractController
         ]);
     }
 
+    /**
+     * @return array<string>
+     */
     private function getData(DockerService $dockerService): array
     {
         $process = new Process(['docker', 'volume', 'ls', '--format=json']);
