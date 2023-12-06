@@ -32,11 +32,8 @@ jobs:
               run: bin/console -V
             # —— Tests ———————————————————————————————————————————————————————————
             - name: Run functional and unit tests
-              run: make citests && cat /var/log/apache2/error.log
-
-            - name: Output log files
-              run: ls /var/log/apache2/
-            - name: error log
-              run: cat /var/log/apache2/error.log
-            - name: access log
-              run: cat /var/log/apache2/access.log
+              run: |
+                make citests
+                ls  /var/log/apache2/
+                cat /var/log/apache2/error.log
+                cat /var/log/apache2/access.log
