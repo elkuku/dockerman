@@ -39,3 +39,4 @@ jobs:
                 cat /var/log/apache2/error.log
                 cat /var/log/apache2/access.log
                 ls -la ./var/log
+                cat ./var/log/test.log
