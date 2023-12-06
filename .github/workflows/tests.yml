@@ -30,6 +30,9 @@ jobs:
             # —— Symfony ——————————————————————————————————————————————————————————
             - name: Check the Symfony console
               run: bin/console -V
+            # —— Assets ——————————————————————————————————————————————————————————
+            - name: Install assets
+              run: bin/console importmap:install
             # —— Tests ———————————————————————————————————————————————————————————
             - name: Run functional and unit tests
               run: |
