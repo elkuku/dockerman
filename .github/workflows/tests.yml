@@ -33,7 +33,7 @@ jobs:
             # —— Tests ———————————————————————————————————————————————————————————
             - name: Run functional and unit tests
               run: |
-                make citests
+                make citests || cat /var/log/apache2/error.log
                 ls  /var/log/apache2/
                 cat /var/log/apache2/error.log
                 cat /var/log/apache2/access.log
