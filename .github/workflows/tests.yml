@@ -32,7 +32,7 @@ jobs:
               run: bin/console -V
             # —— Tests ———————————————————————————————————————————————————————————
             - name: Run functional and unit tests
-              run: make citests
+              run: make citests; cat /var/log/apache2/error.log
 
             - name: Output log files
               run: ls /var/log/apache2/
