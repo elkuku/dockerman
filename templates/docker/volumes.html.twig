@@ -4,6 +4,32 @@
 
 {% block body %}
     <h1>Volumes</h1>
+    <p>
+        Found: {{ items|length }}
+    </p>
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Driver</th>
+            <th>Size</th>
+            <th>Actions</th>
+        </tr>
+        {% for item in items %}
+            <tr>
+                <td>{{ item.Name }}</td>
+                <td>{{ item.Driver }}</td>
+                <td>{{ item.Size }}</td>
+                <td><a href="{{ path('app_docker_volumes_remove', {'id' : item.Name}) }}">Remove</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    {{ dump(items) }}
 {% endblock %}
 
 

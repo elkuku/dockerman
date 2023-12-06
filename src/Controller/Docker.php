@@ -32,24 +32,6 @@ class Docker extends AbstractController
         ]);
     }
 
-    #[Route('/volumes', name: 'app_docker_volumes', methods: ['GET'])]
-    public function volumes(): Response
-    {
-        return $this->render('docker/volumes.html.twig');
-    }
 
-    #[Route('/networks', name: 'app_docker_networks', methods: ['GET'])]
-    public function networks(DockerService $docker): Response
-    {
-        $process = new Process(['docker', 'network', 'ls']);
-        $process2 = new Process(['docker', 'network', 'ls', '--format=json']);
-        $process->run();
-        $process2->run();
 
-        return $this->render('docker/networks.html.twig', [
-            'output' => $process->getOutput(),
-            'output2' => $process2->getOutput(),
-            'items' => $docker->decodeGoJson($process2->getOutput())
-        ]);
-    }
 }

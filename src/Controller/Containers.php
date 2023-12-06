@@ -83,7 +83,7 @@ class Containers extends AbstractController
     }
 
     #[Route('/logs/{id}', name: 'app_docker_containers_logs', methods: ['GET'])]
-    public function logs($id): Response
+    public function logs(string $id): Response
     {
         $process = new Process(['docker', 'container', 'logs', $id]);
         $process->run();
@@ -101,7 +101,7 @@ class Containers extends AbstractController
     }
 
     #[Route('/inspect/{id}', name: 'app_docker_containers_inspect', methods: ['GET'])]
-    public function inspect($id): Response
+    public function inspect(string $id): Response
     {
         $process = new Process(['docker', 'container', 'inspect', $id]);
         $process->run();
@@ -119,7 +119,7 @@ class Containers extends AbstractController
     }
 
     #[Route('/start/{id}', name: 'app_docker_containers_start', methods: ['GET'])]
-    public function start($id): JsonResponse
+    public function start(string $id): JsonResponse
     {
         $process = new Process(['docker', 'container', 'start', $id]);
         $error = '';
@@ -138,7 +138,7 @@ class Containers extends AbstractController
     }
 
     #[Route('/stop/{id}', name: 'app_docker_containers_stop', methods: ['GET'])]
-    public function stop($id): JsonResponse
+    public function stop(string $id): JsonResponse
     {
         $process = new Process(['docker', 'container', 'stop', $id]);
         $error = '';
@@ -157,7 +157,7 @@ class Containers extends AbstractController
     }
 
     #[Route('/remove/{id}', name: 'app_docker_containers_remove', methods: ['GET'])]
-    public function remove($id): JsonResponse
+    public function remove(string $id): JsonResponse
     {
         $process = new Process(['docker', 'container', 'rm', $id]);
         $error = '';
