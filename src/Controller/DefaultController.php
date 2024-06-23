@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/', name: 'app_default', methods: ['GET'])]
 class DefaultController extends AbstractController
@@ -18,8 +18,8 @@ class DefaultController extends AbstractController
 
         try {
             $process->mustRun();
-        } catch (ProcessFailedException $exception) {
-            $error = $exception->getMessage();
+        } catch (ProcessFailedException $processFailedException) {
+            $error = $processFailedException->getMessage();
         }
 
         return $this->render('default/index.html.twig', [

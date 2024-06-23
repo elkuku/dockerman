@@ -45,7 +45,7 @@ abstract class ControllerBase extends WebTestCase
         $routeLoader = static::bootKernel()->getContainer()
             ->get('routing.loader');
 
-        if (!$this->controllerRoot) {
+        if ($this->controllerRoot === '' || $this->controllerRoot === '0') {
             throw new UnexpectedValueException(
                 'Please set a controllerRoot directory!'
             );
@@ -98,6 +98,7 @@ abstract class ControllerBase extends WebTestCase
                     $expectedStatusCodes = $this->exceptions[$routeName]['statusCodes'];
                     $this->usedExceptions[$routeName]['statusCodes'] = $this->exceptions[$routeName]['statusCodes'];
                 }
+
                 if (array_key_exists(
                     'params',
                     $this->exceptions[$routeName]
