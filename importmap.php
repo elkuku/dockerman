@@ -19,20 +19,20 @@ return [
     '@symfony/stimulus-bundle' => [
         'path' => '@symfony/stimulus-bundle/loader.js',
     ],
+    '@symfony/ux-live-component' => [
+        'path' => './vendor/symfony/ux-live-component/assets/dist/live_controller.js',
+    ],
     'bootstrap' => [
-        'version' => '5.3.2',
+        'version' => '5.3.3',
     ],
     '@popperjs/core' => [
         'version' => '2.11.8',
     ],
     'bootstrap/dist/css/bootstrap.min.css' => [
-        'version' => '5.3.2',
+        'version' => '5.3.3',
         'type' => 'css',
     ],
     '@hotwired/stimulus' => [
         'version' => '3.2.2',
-    ],
-    '@symfony/ux-live-component' => [
-        'path' => './vendor/symfony/ux-live-component/assets/dist/live_controller.js',
     ],
 ];
