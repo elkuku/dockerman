@@ -12,9 +12,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
 
-    {% block javascripts %}
-        {{ importmap('app') }}
-    {% endblock %}
+    {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% block javascripts %}{% endblock %}
 </head>
 <body class="d-flex flex-column h-100">
 
