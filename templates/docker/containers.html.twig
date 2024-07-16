@@ -19,10 +19,10 @@
         </div>
     </div>
 
-    <div class="row" {{ stimulus_controller('containers') }}>
+    <div class="row">
         {% for container in containers %}
             <div class="col-auto mb-3">
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="width: 18rem;" {{ stimulus_controller('container') }}>
                     <div class="card-header">
                         {{ container.Names }}
                     </div>
@@ -41,8 +41,8 @@
                             <button type="button"
                                     class="btn btn-{{ 'running' == container.State ? 'danger':'success' }}"
                                     title="{{ 'running' == container.State ? 'Stop':'Start' }}"
-                                    data-action="containers#startStop"
-                                    data-containers-id-param="{{ container.ID }}"
+                                    data-action="container#startStop"
+                                    data-container-id-param="{{ container.ID }}"
                             >
                                 <i class="bi bi-{{ 'running' == container.State ? 'square-fill':'caret-right-fill' }}"></i>
                             </button>
@@ -53,24 +53,24 @@
                             </button>
                             <button type="button" class="btn btn-primary"
                                     title="Show Logs"
-                                    data-containers-action-param="logs"
-                                    data-containers-id-param="{{ container.ID }}"
-                                    data-action="containers#showModal"
+                                    data-container-action-param="logs"
+                                    data-container-id-param="{{ container.ID }}"
+                                    data-action="container#showModal"
                             >
                                 <i class="bi bi-body-text"></i>
                             </button>
                             <button type="button" class="btn btn-primary"
                                     title="Inspect"
-                                    data-containers-action-param="inspect"
-                                    data-containers-id-param="{{ container.ID }}"
-                                    data-action="containers#showModal"
+                                    data-container-action-param="inspect"
+                                    data-container-id-param="{{ container.ID }}"
+                                    data-action="container#showModal"
                             >
                                 <i class="bi bi-eye"></i>
                             </button>
                             <button type="button" class="btn btn-danger"
                                     title="Remove"
-                                    data-action="containers#remove"
-                                    data-containers-id-param="{{ container.ID }}"
+                                    data-action="container#remove"
+                                    data-container-id-param="{{ container.ID }}"
                             >
                                 <i class="bi bi-trash3"></i>
                             </button>

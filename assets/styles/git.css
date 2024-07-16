@@ -1,0 +1,19 @@
+.noGit {
+    color: #515151;
+}
+
+.gitRepo {
+    cursor: pointer;
+}
+
+.gitRepo:hover {
+    background-color: #5e5e5e;
+}
+
+.gitRepoInfo {
+    display: none;
+}
+
+.code {
+    font-family: monospace;
+}

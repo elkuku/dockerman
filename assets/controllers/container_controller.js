@@ -55,7 +55,7 @@ export default class extends Controller {
         }
     }
 
-    async remove(e) {
+    async remove(e)  {
         const element = e.currentTarget;
         const cardElement = element.parentElement.parentElement.parentElement.parentElement;
         const r = await fetch('/containers/remove/' + e.params.id);

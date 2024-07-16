@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GitController!{% endblock %}
+
+{% block body %}
+    <h1>{{ repoDir }}</h1>
+    <ul>
+        {% for dir in directories %}
+            <li
+                    {{ stimulus_controller('git', {
+                        dir: dir.getRelativePathname,
+                        url: path('app_git_info', {dir:dir.getRelativePathname})
+                    }) }}
+                    {{ stimulus_action('git','showInfo', 'click') }}
+            >
+                <span {{ stimulus_target('git', 'status') }}></span>
+                <span {{ stimulus_target('git', 'cntModified') }} class="badge text-bg-info" title="Modified"></span>
+                <span {{ stimulus_target('git', 'cntDeleted') }} class="badge text-bg-secondary" title="Deleted"></span>
+                <span {{ stimulus_target('git', 'cntRenamed') }} class="badge text-bg-success" title="Renamed"></span>
+                <span {{ stimulus_target('git', 'cntUnversioned') }} class="badge text-bg-danger" title="Unversioned"></span>
+                {{ dir.getRelativePathname }}
+                <div {{ stimulus_target('git', 'repoStatus') }} class="gitRepoInfo">
+                    <div {{ stimulus_target('git', 'txtModified') }} class="code text-info" title="Modified"></div>
+                    <div {{ stimulus_target('git', 'txtDeleted') }} class="code text-secondary" title="Deleted"></div>
+                    <div {{ stimulus_target('git', 'txtRenamed') }} class="code text-success" title="Renamed"></div>
+                    <div {{ stimulus_target('git', 'txtUnversioned') }} class="code text-danger"
+                                                                        title="Unversioned"></div>
+
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
