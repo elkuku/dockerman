@@ -4,6 +4,9 @@
 
 {% block body %}
     <h1>{{ repoDir }}</h1>
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
     <ul>
         {% for dir in directories %}
             <li
@@ -17,7 +20,8 @@
                 <span {{ stimulus_target('git', 'cntModified') }} class="badge text-bg-info" title="Modified"></span>
                 <span {{ stimulus_target('git', 'cntDeleted') }} class="badge text-bg-secondary" title="Deleted"></span>
                 <span {{ stimulus_target('git', 'cntRenamed') }} class="badge text-bg-success" title="Renamed"></span>
-                <span {{ stimulus_target('git', 'cntUnversioned') }} class="badge text-bg-danger" title="Unversioned"></span>
+                <span {{ stimulus_target('git', 'cntUnversioned') }} class="badge text-bg-danger"
+                                                                     title="Unversioned"></span>
                 {{ dir.getRelativePathname }}
                 <div {{ stimulus_target('git', 'repoStatus') }} class="gitRepoInfo">
                     <div {{ stimulus_target('git', 'txtModified') }} class="code text-info" title="Modified"></div>
@@ -25,7 +29,6 @@
                     <div {{ stimulus_target('git', 'txtRenamed') }} class="code text-success" title="Renamed"></div>
                     <div {{ stimulus_target('git', 'txtUnversioned') }} class="code text-danger"
                                                                         title="Unversioned"></div>
-
                 </div>
             </li>
         {% endfor %}

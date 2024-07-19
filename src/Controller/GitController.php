@@ -6,6 +6,7 @@ use App\Service\GitInfo;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -14,19 +15,26 @@ class GitController extends AbstractController
 {
     #[Route('/', name: 'app_git')]
     public function index(
-        #[Autowire('%env(GIT_REPO_DIR)%')]
-        string $repoDir
+        #[Autowire('%env(GIT_REPO_DIR)%')] string $repoDir
     ): Response
     {
-        $directories = (new Finder())
-            ->directories()
-            ->in($repoDir)
-            ->depth('== 0')
-            ->sortByCaseInsensitiveName();
+        $error = '';
+        $directories = [];
+
+        if ($repoDir) {
+            $directories = (new Finder())
+                ->directories()
+                ->in($repoDir)
+                ->depth('== 0')
+                ->sortByCaseInsensitiveName();
+        } else {
+            $error = 'Please set repo dir env var GIT_REPO_DIR';
+        }
 
         return $this->render('git/index.html.twig', [
             'repoDir' => $repoDir,
             'directories' => $directories,
+            'error' => $error,
         ]);
     }
 
@@ -34,7 +42,7 @@ class GitController extends AbstractController
     public function info(
         #[Autowire('%env(GIT_REPO_DIR)%')] string $repoDir,
         string                                    $dir
-    ): Response
+    ): JsonResponse
     {
         $path = $repoDir . '/' . $dir;
 
