@@ -16,6 +16,9 @@ readonly class GitInfo
         return is_dir($this->dir . '/.git');
     }
 
+    /**
+     * @return array<string, array<int<0, max>, string>>
+     */
     public function getStatus(): array
     {
         $status = [
@@ -41,9 +44,10 @@ readonly class GitInfo
         $lines = explode("\n", $output);
 
         foreach ($lines as $line) {
-            if (!$line) {
+            if ($line === '') {
                 continue;
             }
+
             $type = trim(substr($line, 0, 2));
             $file = substr($line, 3);
             switch ($type) {

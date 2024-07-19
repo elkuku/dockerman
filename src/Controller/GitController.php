@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/git')]
 class GitController extends AbstractController
 {
-    #[Route('/', name: 'app_git')]
+    #[Route('/', name: 'app_git', methods: ['GET'])]
     public function index(
         #[Autowire('%env(GIT_REPO_DIR)%')] string $repoDir
     ): Response
@@ -21,7 +21,7 @@ class GitController extends AbstractController
         $error = '';
         $directories = [];
 
-        if ($repoDir) {
+        if ($repoDir !== '') {
             $directories = (new Finder())
                 ->directories()
                 ->in($repoDir)
@@ -38,7 +38,7 @@ class GitController extends AbstractController
         ]);
     }
 
-    #[Route('/info/{dir}', name: 'app_git_info')]
+    #[Route('/info/{dir}', name: 'app_git_info', methods: ['GET'])]
     public function info(
         #[Autowire('%env(GIT_REPO_DIR)%')] string $repoDir,
         string                                    $dir

@@ -61,6 +61,12 @@ class ControllerAccessTest extends ControllerBase
             'app_docker_containers_remove' => [
                 'statusCodes' => ['GET' => 200, 'POST' => 200],
             ],
+            'app_git' => [
+                'statusCodes' => ['GET' => 200, 'POST' => 200],
+            ],
+            'app_git_info' => [
+                'statusCodes' => ['GET' => 200, 'POST' => 200],
+            ],
         ];
 
     #[\Override]
